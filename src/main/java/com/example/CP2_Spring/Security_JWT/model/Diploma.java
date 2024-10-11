@@ -1,37 +1,32 @@
 package com.example.CP2_Spring.Security_JWT.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "Diplomas")
 public class Diploma {
-    @NotBlank
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private Long id;
+    private String id;
     @ManyToOne
     @JoinColumn(name = "diplomado_id")
     private Diplomado diplomado;
     @ManyToOne
     @JoinColumn(name = "curso_id")
     private Curso curso;
-    @NotBlank
     @Column(name = "dataDeConclusao")
     private String dataDeConclusao;
-    @NotBlank
     @Enumerated(EnumType.STRING)
     @Column(name = "sexoReitor")
     private Sexo sexoReitor;
-    @NotBlank
     @Column(name = "nomeReitor")
     private String nomeReitor;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -6,20 +6,15 @@ import jakarta.validation.constraints.NotBlank;
 @Entity
 @Table(name = "Diplomados")
 public class Diplomado {
-    @NotBlank
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
     @Column(name = "nome")
     private String nome;
-    @NotBlank
     @Column(name = "nacionalidade")
     private String nacionalidade;
-    @NotBlank
     @Column(name = "naturalidade")
     private String naturalidade;
-    @NotBlank
     @Column(name = "rg")
     private String rg;
 

@@ -6,14 +6,11 @@ import jakarta.validation.constraints.NotBlank;
 @Entity
 @Table(name = "Cursos")
 public class Curso {
-    @NotBlank
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
     @Column(name = "nome")
     private String nome;
-    @NotBlank
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo")
     private TipoCurso tipo;
