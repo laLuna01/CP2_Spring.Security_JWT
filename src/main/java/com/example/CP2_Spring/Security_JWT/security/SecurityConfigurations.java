@@ -1,5 +1,6 @@
 package com.example.CP2_Spring.Security_JWT.security;
 
+import com.example.CP2_Spring.Security_JWT.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,10 +22,13 @@ public class SecurityConfigurations {
     @Autowired
     private SecurityFilter securityFilter;
 
+    @Autowired
+    private AuthService authService;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
-                .csrf(AbstractHttpConfigurer::disable)
+                .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
@@ -34,10 +38,9 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.POST, "/diplomas").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/cursos").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/diplomados").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/diplomas").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/diplomas").authenticated()
                         .requestMatchers(HttpMethod.GET, "/cursos").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/diplomados").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/diplomas").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/cursos").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/diplomados").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/diplomas").hasRole("ADMIN")
