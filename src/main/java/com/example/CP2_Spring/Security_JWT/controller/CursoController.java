@@ -31,6 +31,7 @@ import java.util.Optional;
 @RequestMapping(value = "/cursos", produces = {"application/json"})
 @Tag(name = "api-diplomas")
 public class CursoController {
+    @Autowired
     private CursoRepository cursoRepository;
     @Autowired
     private CursoMapper cursoMapper;

@@ -7,10 +7,10 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record DiplomaRequestDTO(
-        @NotNull(message = "O diplomado é obrigatório")
-        Diplomado diplomado,
-        @NotNull(message = "O curso é obrigatório")
-        Curso curso,
+        @NotNull(message = "O id do diplomado é obrigatório")
+        Long idDiplomado,
+        @NotNull(message = "O id do curso é obrigatório")
+        Long idCurso,
         @NotBlank(message = "A data de conclusão é obrigatória")
         String dataDeConclusao,
         @NotNull(message = "O sexo do reitor é obrigatório")
