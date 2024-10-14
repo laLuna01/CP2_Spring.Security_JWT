@@ -81,7 +81,7 @@ public class DiplomaController {
             @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso")
     })
     @GetMapping("/{id}")
-    public ResponseEntity<DiplomaResponseDTO> readDiploma(@PathVariable String id) {
+    public ResponseEntity<String> readDiploma(@PathVariable String id) {
         Optional<Diploma> diplomaSalvo = diplomaRepository.findById(Long.valueOf(id));
         if (diplomaSalvo.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -91,8 +91,8 @@ public class DiplomaController {
                 WebMvcLinkBuilder.methodOn(DiplomaController.class)
                         .readDiploma(diploma.getId())
         ).withSelfRel();
-        DiplomaResponseDTO diplomaResponseDTO = diplomaMapper.diplomaToResponseDTO(diploma, link);
-        return new ResponseEntity<>(diplomaResponseDTO, HttpStatus.OK);
+        String textoFormatado = diplomaMapper.gerarTextoDiploma(diploma);
+        return new ResponseEntity<>(textoFormatado, HttpStatus.OK);
     }
 
     @Operation(summary = "Atualiza um diploma já existente no banco")
