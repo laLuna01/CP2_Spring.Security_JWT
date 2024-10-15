@@ -31,7 +31,6 @@ import java.util.Optional;
 public class DiplomadoController {
     @Autowired
     private DiplomadoRepository diplomadoRepository;
-    @Autowired
     private DiplomadoMapper diplomadoMapper;
 
     Pageable paginacao = PageRequest.of(0, 2, Sort.by("nome").descending());

@@ -36,7 +36,6 @@ import java.util.Optional;
 public class DiplomaController {
     @Autowired
     private DiplomaRepository diplomaRepository;
-    @Autowired
     private DiplomaMapper diplomaMapper;
     @Autowired
     private CursoRepository cursoRepository;

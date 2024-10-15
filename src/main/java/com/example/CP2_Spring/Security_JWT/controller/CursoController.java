@@ -75,6 +75,7 @@ public class CursoController {
     })
     @GetMapping("/{id}")
     public ResponseEntity<CursoResponseDTO> readCurso(@PathVariable Long id) {
+        System.out.println("Entrou no get mas antes do repository");
         Optional<Curso> cursoSalvo = cursoRepository.findById(id);
         if (cursoSalvo.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
