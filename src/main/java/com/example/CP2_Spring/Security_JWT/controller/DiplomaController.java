@@ -29,6 +29,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/diplomas", produces = {"application/json"})
@@ -36,6 +37,7 @@ import java.util.Optional;
 public class DiplomaController {
     @Autowired
     private DiplomaRepository diplomaRepository;
+    @Autowired
     private DiplomaMapper diplomaMapper;
     @Autowired
     private CursoRepository cursoRepository;
@@ -81,7 +83,7 @@ public class DiplomaController {
     })
     @GetMapping("/{id}")
     public ResponseEntity<String> readDiploma(@PathVariable String id) {
-        Optional<Diploma> diplomaSalvo = diplomaRepository.findById(Long.valueOf(id));
+        Optional<Diploma> diplomaSalvo = diplomaRepository.findById(id);
         if (diplomaSalvo.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -102,7 +104,7 @@ public class DiplomaController {
     })
     @PutMapping("/{id}")
     public ResponseEntity<DiplomaResponseDTO> updateDiploma(@PathVariable String id, @Valid @RequestBody DiplomaRequestDTO diplomaRequestDTO) {
-        Optional<Diploma> diplomaSalvo = diplomaRepository.findById(Long.valueOf(id));
+        Optional<Diploma> diplomaSalvo = diplomaRepository.findById(id);
         if (diplomaSalvo.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -133,7 +135,7 @@ public class DiplomaController {
     })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteDiploma(@PathVariable String id) {
-        Optional<Diploma> diplomaSalvo = diplomaRepository.findById(Long.valueOf(id));
+        Optional<Diploma> diplomaSalvo = diplomaRepository.findById(id);
         if (diplomaSalvo.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

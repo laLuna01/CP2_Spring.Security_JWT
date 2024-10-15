@@ -4,7 +4,9 @@ import com.example.CP2_Spring.Security_JWT.dto.DiplomadoRequestDTO;
 import com.example.CP2_Spring.Security_JWT.dto.DiplomadoResponseDTO;
 import com.example.CP2_Spring.Security_JWT.model.Diplomado;
 import org.springframework.hateoas.Link;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DiplomadoMapper {
     public Diplomado requestRecordToDiplomado(DiplomadoRequestDTO diplomadoRequestDTO) {
         Diplomado diplomado = new Diplomado();

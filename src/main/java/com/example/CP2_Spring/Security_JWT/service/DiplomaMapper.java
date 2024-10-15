@@ -11,8 +11,10 @@ import com.example.CP2_Spring.Security_JWT.repository.DiplomadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+@Service
 public class DiplomaMapper {
     @Autowired
     private CursoRepository cursoRepository;
@@ -63,7 +65,7 @@ public class DiplomaMapper {
                 diploma.getDiplomado().getNacionalidade(),
                 diploma.getDiplomado().getNaturalidade(),
                 diploma.getDiplomado().getRg(),
-                diploma.getCurso().getTipo(),
+                diploma.getCurso().getTipo().getCurso(),
                 diploma.getCurso().getNome(),
                 diploma.getDataDeConclusao()
         );
